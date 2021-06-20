@@ -1,5 +1,5 @@
 {
-  "name": "@julio-soto/shared-context",
+  "name": "@julio-soto/shared-library-context",
   "version": "1.0.0",
   "license": "MIT",
   "main": "dist/index.js",
