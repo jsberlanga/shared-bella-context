@@ -1,25 +1,39 @@
 import * as React from "react";
 
-const SharedBellaContext = React.createContext<{ isBellaPageType?: boolean }>({
+const SharedBellaContext = React.createContext<{
+  isBellaPageType?: boolean;
+  featureToggles?: unknown[];
+}>({
   isBellaPageType: undefined,
+  featureToggles: [],
 });
 
 interface SharedBellaContextProviderProps {
-  pageType: string;
+  value: {
+    pageType: string;
+    featureToggles: unknown[];
+  };
   children?: React.ReactNode;
 }
 
-const useIsBellaPageType = (pageType: string) =>
-  pageType === "/bella" || pageType === "bella";
+const useIsBellaPageType = (pageType: string) => pageType === "/bella";
 
 const SharedBellaContextProvider = ({
-  pageType,
+  value,
   children,
 }: SharedBellaContextProviderProps) => {
-  const isBellaPageType = useIsBellaPageType(pageType);
+  const isBellaPageType = useIsBellaPageType(value.pageType);
+
+  const memoizedValue = React.useMemo(
+    () => ({
+      isBellaPageType,
+      featureToggles: value.featureToggles,
+    }),
+    [isBellaPageType, value.featureToggles]
+  );
 
   return (
-    <SharedBellaContext.Provider value={{ isBellaPageType }}>
+    <SharedBellaContext.Provider value={memoizedValue}>
       {children}
     </SharedBellaContext.Provider>
   );
