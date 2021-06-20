@@ -9,7 +9,8 @@ interface SharedBellaContextProviderProps {
   children?: React.ReactNode;
 }
 
-const useIsBellaPageType = (pageType: string) => pageType === "/bella";
+const useIsBellaPageType = (pageType: string) =>
+  pageType === "/bella" || pageType === "bella";
 
 const SharedBellaContextProvider = ({
   pageType,
