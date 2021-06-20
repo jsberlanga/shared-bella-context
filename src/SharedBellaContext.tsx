@@ -5,24 +5,24 @@ const SharedBellaContext = React.createContext<{
   featureToggles?: unknown[];
 }>({
   isBellaPageType: undefined,
-  featureToggles: [],
+  featureToggles: undefined,
 });
 
 interface SharedBellaContextProviderProps {
   value: {
-    pageType: string;
-    featureToggles: unknown[];
+    pageType?: string;
+    featureToggles?: unknown[];
   };
   children?: React.ReactNode;
 }
 
-const useIsBellaPageType = (pageType: string) => pageType === "/bella";
+const useIsBellaPageType = (pageType?: string) => pageType === "/bella";
 
 const SharedBellaContextProvider = ({
   value,
   children,
 }: SharedBellaContextProviderProps) => {
-  const isBellaPageType = useIsBellaPageType(value.pageType);
+  const isBellaPageType = useIsBellaPageType(value?.pageType);
 
   const memoizedValue = React.useMemo(
     () => ({
