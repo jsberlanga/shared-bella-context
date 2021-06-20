@@ -1,6 +1,6 @@
 {
   "name": "@julio-soto/shared-context",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -8,6 +8,15 @@
   "files": [
     "dist"
   ],
+  "release": {
+    "plugins": [
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  },
   "publishConfig": {
     "access": "public"
   },
@@ -15,21 +24,38 @@
     "react": "~17.0.1"
   },
   "devDependencies": {
-    "@types/react": "^17.0.11"
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "@types/react": "^17.0.11",
+    "husky": "^6.0.0",
+    "semantic-release": "^17.4.4"
   },
   "scripts": {
     "prebuild": "rm -rf dist",
     "compile": "tsc",
-    "build": "yarn run prebuild && yarn run compile"
+    "build": "yarn run prebuild && yarn run compile",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jsberlanga/shared-bella-context.git"
+    "url": "https://github.com/jsberlanga/shared-context.git"
   },
   "author": "",
   "bugs": {
-    "url": "https://github.com/jsberlanga/shared-bella-context/issues"
+    "url": "https://github.com/jsberlanga/shared-context/issues"
   },
-  "homepage": "https://github.com/jsberlanga/shared-bella-context#readme",
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "homepage": "https://github.com/jsberlanga/shared-context#readme",
   "description": ""
 }

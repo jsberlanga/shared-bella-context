@@ -30,4 +30,8 @@ const useSharedBellaContext = () => {
   return context;
 };
 
-export { SharedBellaContextProvider, useSharedBellaContext };
+export {
+  SharedBellaContextProvider,
+  SharedBellaContext,
+  useSharedBellaContext,
+};
